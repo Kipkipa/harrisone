@@ -7,22 +7,22 @@ import {
   Phone, 
   MapPin, 
   Download, 
-  ArrowRight,
-  Database, 
-  FileSpreadsheet, 
-  Code, 
+  ArrowRight, 
   Menu, 
-  X,
-  CreditCard,
-  CheckCircle2
+  X, 
+  CheckCircle,
+  Database,
+  Code
 } from 'lucide-react';
 
-const Portfolio = () => {
+export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -38,18 +38,20 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-white font-sans text-slate-800">
       
-      {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-4' : 'bg-emerald-900 py-6'}`}>
+      {/* Navigation Bar */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-4' : 'bg-slate-900 py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-emerald-900' : 'text-white'}`}>
+          {/* Logo */}
+          <div className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
             HARRISONE<span className="text-orange-500">.</span>
           </div>
           
+          {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
-            <button onClick={() => scrollToSection('about')} className={`text-sm font-medium hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>ABOUT</button>
-            <button onClick={() => scrollToSection('expertise')} className={`text-sm font-medium hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>EXPERTISE</button>
-            <button onClick={() => scrollToSection('experience')} className={`text-sm font-medium hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>EXPERIENCE</button>
-            <button onClick={() => scrollToSection('education')} className={`text-sm font-medium hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>EDUCATION</button>
+            <button onClick={() => scrollToSection('about')} className={`text-sm font-bold hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>ABOUT</button>
+            <button onClick={() => scrollToSection('expertise')} className={`text-sm font-bold hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>EXPERTISE</button>
+            <button onClick={() => scrollToSection('experience')} className={`text-sm font-bold hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>EXPERIENCE</button>
+            <button onClick={() => scrollToSection('education')} className={`text-sm font-bold hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>EDUCATION</button>
             
             <button 
               onClick={() => scrollToSection('contact')}
@@ -59,80 +61,89 @@ const Portfolio = () => {
             </button>
           </div>
 
+          {/* Mobile Toggle */}
           <button className={`md:hidden ${isScrolled ? 'text-slate-900' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-white border-t p-6 flex flex-col gap-4 shadow-xl">
-            <button onClick={() => scrollToSection('about')} className="text-left text-slate-700 font-medium py-2">ABOUT</button>
-            <button onClick={() => scrollToSection('expertise')} className="text-left text-slate-700 font-medium py-2">EXPERTISE</button>
-            <button onClick={() => scrollToSection('experience')} className="text-left text-slate-700 font-medium py-2">EXPERIENCE</button>
+            <button onClick={() => scrollToSection('about')} className="text-left text-slate-700 font-bold py-2">ABOUT</button>
+            <button onClick={() => scrollToSection('expertise')} className="text-left text-slate-700 font-bold py-2">EXPERTISE</button>
+            <button onClick={() => scrollToSection('experience')} className="text-left text-slate-700 font-bold py-2">EXPERIENCE</button>
             <button onClick={() => scrollToSection('contact')} className="text-left text-orange-600 font-bold py-2">CONTACT ME</button>
           </div>
         )}
       </nav>
 
-      {/* Hero Section - Dark Emerald Background */}
-      <header id="about" className="bg-emerald-900 pt-32 pb-20 md:pt-48 md:pb-32 px-6">
-        <div className="container mx-auto max-w-5xl">
+      {/* Hero Section */}
+      <header id="about" className="bg-slate-900 pt-32 pb-20 md:pt-48 md:pb-32 px-6">
+        <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row gap-12 items-center">
+            
+            {/* Left Content */}
             <div className="flex-1 text-center md:text-left">
-              <div className="inline-block px-4 py-1.5 bg-emerald-800 border border-emerald-700 rounded-full mb-6">
-                <span className="text-emerald-300 text-xs font-bold tracking-widest uppercase">
+              <div className="inline-block px-4 py-1.5 bg-slate-800 border border-slate-700 rounded-full mb-6">
+                <span className="text-emerald-400 text-xs font-bold tracking-widest uppercase">
                   Finance & Strategy Professional
                 </span>
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-                Data-Driven <br/>
-                <span className="text-orange-400">Financial Clarity.</span>
+                Bridging Finance with <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">Data Science</span>
               </h1>
               
-              <p className="text-lg text-emerald-100 mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">
-                I bridge the gap between traditional accounting and modern data science. 
-                With a background in Commerce and ongoing CPA/MBA studies, I help businesses optimize financial performance through precision and insight.
+              <p className="text-lg text-slate-400 mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">
+                I am a results-oriented Accounts Assistant, MBA Candidate, and CPA Finalist. 
+                I combine rigorous financial accounting with modern data analytics (Python & SQL) to drive business precision.
               </p>
               
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <button 
                   onClick={() => scrollToSection('experience')}
-                  className="px-8 py-4 bg-white text-emerald-900 font-bold rounded hover:bg-emerald-50 transition-colors flex items-center gap-2"
+                  className="px-8 py-4 bg-emerald-500 text-white font-bold rounded hover:bg-emerald-600 transition-colors flex items-center gap-2 shadow-lg shadow-emerald-500/20"
                 >
-                  View Experience <ArrowRight size={18} />
+                  View My Work <ArrowRight size={18} />
                 </button>
-                <button className="px-8 py-4 bg-transparent border border-emerald-700 text-white font-bold rounded hover:bg-emerald-800 transition-colors flex items-center gap-2">
+                <button className="px-8 py-4 bg-transparent border border-slate-600 text-white font-bold rounded hover:bg-slate-800 transition-colors flex items-center gap-2">
                   <Download size={18} /> Download CV
                 </button>
               </div>
             </div>
 
-            {/* Abstract Visual */}
-            <div className="flex-1 flex justify-center">
-              <div className="relative w-72 h-72 md:w-96 md:h-96">
-                <div className="absolute inset-0 bg-emerald-500 rounded-full opacity-20 blur-3xl"></div>
-                <div className="relative bg-emerald-800 p-8 rounded-2xl border border-emerald-700 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                  <div className="flex items-center gap-4 mb-6 border-b border-emerald-700 pb-4">
-                    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center text-white">
-                      <Database size={24} />
-                    </div>
-                    <div>
-                      <h3 className="text-white font-bold">New Skillset</h3>
-                      <p className="text-emerald-300 text-sm">Data Camp 2025</p>
-                    </div>
+            {/* Right Content - Visual */}
+            <div className="flex-1 flex justify-center w-full">
+              <div className="relative w-full max-w-sm bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-2xl">
+                {/* Floating Badge */}
+                <div className="absolute -top-6 -right-6 w-24 h-24 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg animate-pulse">
+                  MBA
+                </div>
+                
+                <h3 className="text-white text-xl font-bold mb-6 border-b border-slate-700 pb-4">Key Competencies</h3>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-slate-300">
+                    <CheckCircle size={20} className="text-emerald-400" />
+                    <span>Financial Reporting</span>
                   </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 text-emerald-100">
-                      <CheckCircle2 size={18} className="text-orange-400" /> Python for Finance
-                    </div>
-                    <div className="flex items-center gap-3 text-emerald-100">
-                      <CheckCircle2 size={18} className="text-orange-400" /> SQL Databases
-                    </div>
-                    <div className="flex items-center gap-3 text-emerald-100">
-                      <CheckCircle2 size={18} className="text-orange-400" /> Advanced Excel
-                    </div>
+                  <div className="flex items-center gap-3 text-slate-300">
+                    <CheckCircle size={20} className="text-emerald-400" />
+                    <span>Bank Reconciliation</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-300">
+                    <CheckCircle size={20} className="text-emerald-400" />
+                    <span>Python for Finance</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-300">
+                    <CheckCircle size={20} className="text-emerald-400" />
+                    <span>SQL Data Analysis</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-300">
+                    <CheckCircle size={20} className="text-emerald-400" />
+                    <span>Budgeting & Planning</span>
                   </div>
                 </div>
               </div>
@@ -147,18 +158,19 @@ const Portfolio = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Technical Expertise</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              A unique combination of certified accounting knowledge and technical data skills.
+              Merging certified accounting standards with cutting-edge data tools.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Card 1: Finance */}
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100 hover:border-emerald-500 transition-colors">
+            
+            {/* Box 1: Finance */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-emerald-100 text-emerald-700 rounded-lg">
-                  <CreditCard size={24} />
+                <div className="p-3 bg-emerald-100 text-emerald-600 rounded-lg">
+                  <Briefcase size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">Financial Management</h3>
+                <h3 className="text-xl font-bold text-slate-900">Financial Core</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Financial Reporting</span>
@@ -170,109 +182,99 @@ const Portfolio = () => {
               </div>
             </div>
 
-            {/* Card 2: Data */}
-            <div className="bg-slate-900 p-8 rounded-xl shadow-lg text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500 rounded-full blur-[60px] opacity-20"></div>
-              
-              <div className="flex items-center gap-4 mb-6 relative z-10">
+            {/* Box 2: Data (Dark Mode Style) */}
+            <div className="bg-slate-900 p-8 rounded-xl shadow-lg text-white">
+               <div className="flex items-center gap-4 mb-6">
                 <div className="p-3 bg-slate-800 text-orange-400 rounded-lg border border-slate-700">
-                  <Database size={24} />
+                  <Award size={24} />
                 </div>
                 <h3 className="text-xl font-bold">Data Intelligence</h3>
               </div>
               
-              <div className="space-y-4 relative z-10">
-                <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between p-4 bg-slate-800 rounded-lg border border-slate-700">
                   <div className="flex items-center gap-3">
-                    <Code size={18} className="text-blue-400"/>
-                    <span className="font-medium">Python</span>
+                    <Code size={20} className="text-blue-400" />
+                    <span className="font-bold text-lg">Python</span>
                   </div>
-                  <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded">Automation</span>
+                  <span className="text-xs text-slate-400 uppercase tracking-wider">Automation</span>
                 </div>
-
-                <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
+                <div className="flex items-center justify-between p-4 bg-slate-800 rounded-lg border border-slate-700">
                   <div className="flex items-center gap-3">
-                    <Database size={18} className="text-orange-400"/>
-                    <span className="font-medium">SQL</span>
+                    <Database size={20} className="text-orange-400" />
+                    <span className="font-bold text-lg">SQL</span>
                   </div>
-                  <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded">Querying</span>
+                  <span className="text-xs text-slate-400 uppercase tracking-wider">Database Querying</span>
                 </div>
-
-                <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
-                  <div className="flex items-center gap-3">
-                    <FileSpreadsheet size={18} className="text-emerald-400"/>
-                    <span className="font-medium">Advanced Excel</span>
+                <div className="flex items-center justify-between p-4 bg-slate-800 rounded-lg border border-slate-700">
+                   <div className="flex items-center gap-3">
+                    <Briefcase size={20} className="text-emerald-400" />
+                    <span className="font-bold text-lg">Advanced Excel</span>
                   </div>
-                  <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded">Modeling</span>
+                  <span className="text-xs text-slate-400 uppercase tracking-wider">Modeling</span>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 px-6">
+      <section id="experience" className="py-20 px-6 bg-white">
         <div className="container mx-auto max-w-4xl">
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl font-bold text-slate-900">Professional Journey</h2>
-            <div className="h-1 bg-slate-100 flex-1 ml-6 rounded-full">
-              <div className="h-1 bg-emerald-500 w-20 rounded-full"></div>
-            </div>
-          </div>
-
+          <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Professional Experience</h2>
+          
           <div className="space-y-12 border-l-2 border-slate-100 pl-8 ml-4 md:ml-0">
-            {/* Job 1 */}
+            
+            {/* Item 1 */}
             <div className="relative">
               <div className="absolute -left-[41px] top-1 w-5 h-5 bg-emerald-500 rounded-full border-4 border-white shadow-sm"></div>
-              <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+              <div className="mb-2">
                 <h3 className="text-xl font-bold text-slate-900">Accounts Assistant</h3>
-                <span className="text-sm font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">Feb 2024 — Sep 2024</span>
+                <p className="text-emerald-600 font-bold text-sm">Multimedia University Club House | Feb 2024 — Sep 2024</p>
               </div>
-              <p className="text-slate-600 font-medium mb-3">Multimedia University Club House | Nairobi</p>
-              <p className="text-slate-500 leading-relaxed">
+              <p className="text-slate-600">
                 Orchestrated daily financial transactions and monthly reconciliations. Streamlined the invoicing process and supported rigorous budget tracking for the university facility.
               </p>
             </div>
 
-            {/* Job 2 */}
+            {/* Item 2 */}
             <div className="relative">
               <div className="absolute -left-[41px] top-1 w-5 h-5 bg-orange-500 rounded-full border-4 border-white shadow-sm"></div>
-              <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+              <div className="mb-2">
                 <h3 className="text-xl font-bold text-slate-900">Data Entry Consultant</h3>
-                <span className="text-sm font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">Jan 2020 — Dec 2023</span>
+                <p className="text-orange-600 font-bold text-sm">Maisha Meds Co. | Jan 2020 — Dec 2023</p>
               </div>
-              <p className="text-slate-600 font-medium mb-3">Maisha Meds Co. | Kisumu</p>
-              <p className="text-slate-500 leading-relaxed">
+              <p className="text-slate-600">
                 Key player in the digital transformation of pharmacy records. Verified large datasets to enhance the Maisha Meds digital platform and trained staff on system compliance.
               </p>
             </div>
 
-            {/* Job 3 */}
+            {/* Item 3 */}
             <div className="relative">
-              <div className="absolute -left-[41px] top-1 w-5 h-5 bg-slate-300 rounded-full border-4 border-white shadow-sm"></div>
-              <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+              <div className="absolute -left-[41px] top-1 w-5 h-5 bg-slate-400 rounded-full border-4 border-white shadow-sm"></div>
+              <div className="mb-2">
                 <h3 className="text-xl font-bold text-slate-900">Financial Assistant (Attachment)</h3>
-                <span className="text-sm font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">Jun 2023 — Aug 2023</span>
+                <p className="text-slate-500 font-bold text-sm">KMTC - Lake Victoria Campus | Jun 2023 — Aug 2023</p>
               </div>
-              <p className="text-slate-600 font-medium mb-3">KMTC - Lake Victoria Campus</p>
-              <p className="text-slate-500 leading-relaxed">
-                Managed petty cash books, processed payment vouchers, and prepared VAT withholding schedules.
+              <p className="text-slate-600">
+                Managed petty cash books, processed payment vouchers, and prepared VAT withholding schedules. Ensured strict adherence to public finance regulations.
               </p>
             </div>
 
-            {/* Job 4 */}
-            <div className="relative">
+             {/* Item 4 */}
+             <div className="relative">
               <div className="absolute -left-[41px] top-1 w-5 h-5 bg-purple-500 rounded-full border-4 border-white shadow-sm"></div>
-              <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+              <div className="mb-2">
                 <h3 className="text-xl font-bold text-slate-900">Founder & CEO</h3>
-                <span className="text-sm font-bold text-purple-600 bg-purple-50 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">Dec 2019 — Present</span>
+                <p className="text-purple-600 font-bold text-sm">Ojay Fragrance | Dec 2019 — Present</p>
               </div>
-              <p className="text-slate-600 font-medium mb-3">Ojay Fragrance</p>
-              <p className="text-slate-500 leading-relaxed">
+              <p className="text-slate-600">
                 Founded and scaled a retail business. Responsible for P&L management, marketing strategy, and supply chain logistics.
               </p>
             </div>
+
           </div>
         </div>
       </section>
@@ -280,38 +282,34 @@ const Portfolio = () => {
       {/* Education Section */}
       <section id="education" className="py-20 bg-slate-50 px-6">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Education & Certifications</h2>
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Education & Qualifications</h2>
           
           <div className="grid md:grid-cols-3 gap-6">
+            
             {/* Degree 1 */}
-            <div className="bg-white p-8 rounded-xl border-t-4 border-emerald-500 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 mb-4">
-                <GraduationCap size={24} />
-              </div>
+            <div className="bg-white p-8 rounded-xl border-t-4 border-emerald-500 shadow-sm">
+              <div className="mb-4 text-emerald-600"><GraduationCap size={32} /></div>
               <h3 className="font-bold text-slate-900 text-lg">BSc in Commerce</h3>
               <p className="text-emerald-600 text-sm font-bold mb-2">Multimedia University</p>
               <p className="text-slate-500 text-sm">Second Class Honours (Upper Division). Specializing in Finance.</p>
             </div>
 
             {/* Degree 2 */}
-            <div className="bg-white p-8 rounded-xl border-t-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
-                <Briefcase size={24} />
-              </div>
-              <h3 className="font-bold text-slate-900 text-lg">Master of Business Admin</h3>
+            <div className="bg-white p-8 rounded-xl border-t-4 border-blue-500 shadow-sm">
+              <div className="mb-4 text-blue-600"><Briefcase size={32} /></div>
+              <h3 className="font-bold text-slate-900 text-lg">MBA Candidate</h3>
               <p className="text-blue-600 text-sm font-bold mb-2">In Progress</p>
               <p className="text-slate-500 text-sm">Focusing on Strategic Management and Advanced Financial Planning.</p>
             </div>
 
-            {/* Cert */}
-            <div className="bg-white p-8 rounded-xl border-t-4 border-orange-500 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 mb-4">
-                <Award size={24} />
-              </div>
+            {/* Degree 3 */}
+            <div className="bg-white p-8 rounded-xl border-t-4 border-orange-500 shadow-sm">
+              <div className="mb-4 text-orange-600"><Award size={32} /></div>
               <h3 className="font-bold text-slate-900 text-lg">CPA (K)</h3>
               <p className="text-orange-600 text-sm font-bold mb-2">KASNEB</p>
               <p className="text-slate-500 text-sm">Foundation Level Complete. Intermediate Level In Progress.</p>
             </div>
+
           </div>
         </div>
       </section>
@@ -319,43 +317,35 @@ const Portfolio = () => {
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-slate-900 text-white px-6">
         <div className="container mx-auto max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12">
+            
             <div>
               <p className="text-orange-500 font-bold tracking-widest text-sm uppercase mb-4">Contact</p>
-              <h2 className="text-4xl font-bold mb-6">Let's Discuss Your Financial Strategy</h2>
+              <h2 className="text-4xl font-bold mb-6">Let's Discuss Opportunities</h2>
               <p className="text-slate-400 mb-8 text-lg">
-                I am available for full-time roles and consulting projects. Reach out to see how I can add value to your team.
+                I am available for full-time roles and consulting projects. 
               </p>
               
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center text-emerald-400">
-                    <Mail size={20} />
+                  <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-emerald-400">
+                    <Mail size={18} />
                   </div>
-                  <div>
-                    <p className="text-sm text-slate-400">Email Me</p>
-                    <a href="mailto:flavianurich@gmail.com" className="text-lg font-bold hover:text-emerald-400 transition-colors">flavianurich@gmail.com</a>
-                  </div>
+                  <a href="mailto:flavianurich@gmail.com" className="text-lg hover:text-emerald-400 transition-colors">flavianurich@gmail.com</a>
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center text-emerald-400">
-                    <Phone size={20} />
+                  <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-emerald-400">
+                    <Phone size={18} />
                   </div>
-                  <div>
-                    <p className="text-sm text-slate-400">Call Me</p>
-                    <p className="text-lg font-bold">+254 111 594 730</p>
-                  </div>
+                  <p className="text-lg">+254 111 594 730</p>
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center text-emerald-400">
-                    <MapPin size={20} />
+                  <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-emerald-400">
+                    <MapPin size={18} />
                   </div>
-                  <div>
-                    <p className="text-sm text-slate-400">Location</p>
-                    <p className="text-lg font-bold">Kisumu, Kenya</p>
-                  </div>
+                  <p className="text-lg">Kisumu, Kenya</p>
                 </div>
               </div>
             </div>
@@ -363,31 +353,31 @@ const Portfolio = () => {
             <div className="bg-white text-slate-800 p-8 rounded-2xl shadow-xl">
               <form className="space-y-4">
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-1">Your Name</label>
-                  <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors" placeholder="John Doe" />
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Name</label>
+                  <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3" placeholder="Your Name" />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-1">Email Address</label>
-                  <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors" placeholder="john@example.com" />
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Email</label>
+                  <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3" placeholder="email@address.com" />
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-1">Message</label>
-                  <textarea rows="4" className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors" placeholder="I'd like to discuss an opportunity..."></textarea>
+                  <textarea rows="4" className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3" placeholder="Your message..."></textarea>
                 </div>
-                <button className="w-full bg-emerald-600 text-white font-bold py-4 rounded hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20">
+                <button className="w-full bg-emerald-600 text-white font-bold py-4 rounded hover:bg-emerald-700 transition-colors">
                   Send Message
                 </button>
               </form>
             </div>
+
           </div>
         </div>
       </section>
 
       <footer className="bg-slate-950 text-slate-500 py-8 text-center border-t border-slate-900">
-        <p>&copy; {new Date().getFullYear()} Harrisone Urich. All Rights Reserved.</p>
+        <p>© {new Date().getFullYear()} Harrisone Urich. All Rights Reserved.</p>
       </footer>
+
     </div>
   );
-};
-
-export default Portfolio;
+}
