@@ -13,7 +13,8 @@ import {
   Code, 
   Menu, 
   X,
-  CreditCard
+  CreditCard,
+  CheckCircle2
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -35,296 +36,346 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 font-sans text-stone-800 selection:bg-emerald-200 selection:text-emerald-900 relative overflow-hidden">
+    <div className="min-h-screen bg-white font-sans text-slate-800">
       
-      {/* Ambient Background Gradients */}
-      <div className="fixed inset-0 pointer-events-none opacity-40">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-emerald-100 rounded-full blur-[100px] mix-blend-multiply"></div>
-        <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-orange-100 rounded-full blur-[100px] mix-blend-multiply"></div>
-      </div>
-
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-8'}`}>
-        <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-          <div className="text-xl font-serif font-bold tracking-tight text-stone-900 group cursor-pointer">
-            HARRISONE URICH<span className="text-orange-500 group-hover:text-emerald-600 transition-colors">.</span>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-4' : 'bg-emerald-900 py-6'}`}>
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          <div className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-emerald-900' : 'text-white'}`}>
+            HARRISONE<span className="text-orange-500">.</span>
           </div>
           
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide text-stone-600">
-            {['About', 'Expertise', 'Experience', 'Education'].map((item) => (
-              <button 
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase())}
-                className="hover:text-emerald-700 transition-colors uppercase text-xs relative group"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all group-hover:w-full"></span>
-              </button>
-            ))}
+          <div className="hidden md:flex items-center gap-8">
+            <button onClick={() => scrollToSection('about')} className={`text-sm font-medium hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>ABOUT</button>
+            <button onClick={() => scrollToSection('expertise')} className={`text-sm font-medium hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>EXPERTISE</button>
+            <button onClick={() => scrollToSection('experience')} className={`text-sm font-medium hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>EXPERIENCE</button>
+            <button onClick={() => scrollToSection('education')} className={`text-sm font-medium hover:text-orange-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>EDUCATION</button>
+            
             <button 
               onClick={() => scrollToSection('contact')}
-              className="px-6 py-2.5 bg-stone-900 text-white text-xs uppercase tracking-widest hover:bg-emerald-700 transition-colors rounded-sm"
+              className="px-6 py-2 bg-orange-500 text-white text-sm font-bold rounded hover:bg-orange-600 transition-colors"
             >
-              Contact
+              CONTACT
             </button>
           </div>
 
-          <button className="md:hidden text-stone-900" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button className={`md:hidden ${isScrolled ? 'text-slate-900' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-stone-100 p-8 flex flex-col gap-6 shadow-xl z-50">
-            {['About', 'Expertise', 'Experience', 'Education', 'Contact'].map((item) => (
-              <button 
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase())}
-                className="text-stone-600 hover:text-emerald-600 text-left text-lg font-serif"
-              >
-                {item}
-              </button>
-            ))}
+          <div className="md:hidden absolute top-full left-0 w-full bg-white border-t p-6 flex flex-col gap-4 shadow-xl">
+            <button onClick={() => scrollToSection('about')} className="text-left text-slate-700 font-medium py-2">ABOUT</button>
+            <button onClick={() => scrollToSection('expertise')} className="text-left text-slate-700 font-medium py-2">EXPERTISE</button>
+            <button onClick={() => scrollToSection('experience')} className="text-left text-slate-700 font-medium py-2">EXPERIENCE</button>
+            <button onClick={() => scrollToSection('contact')} className="text-left text-orange-600 font-bold py-2">CONTACT ME</button>
           </div>
         )}
       </nav>
 
-      {/* Hero Section */}
-      <header className="pt-40 pb-20 md:pt-52 md:pb-32 container mx-auto px-6 md:px-12 relative z-10">
-        <div className="max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-full mb-6">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-emerald-700 font-medium tracking-widest text-xs uppercase">
-              Available for Finance Roles
-            </span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-stone-900 leading-[1.1] mb-8">
-            Bridging the gap between <span className="text-emerald-700 italic">finance</span> and <span className="text-orange-600 italic">data science</span>.
-          </h1>
-          <p className="text-xl text-stone-600 max-w-2xl leading-relaxed font-light">
-            I am a results-oriented Accounts Assistant, MBA Candidate, and CPA Finalist. 
-            I combine rigorous financial accounting with modern data analytics to drive business precision.
-          </p>
-          
-          <div className="flex flex-wrap gap-6 mt-12">
-            <button 
-              onClick={() => scrollToSection('experience')}
-              className="group flex items-center gap-3 px-8 py-4 bg-emerald-900 text-white rounded-lg hover:bg-emerald-800 transition-all shadow-lg shadow-emerald-900/20"
-            >
-              View My Work <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
-            </button>
-            <button className="flex items-center gap-3 px-8 py-4 border border-stone-300 rounded-lg text-stone-600 hover:border-orange-500 hover:text-orange-600 transition-colors bg-white/50 backdrop-blur-sm">
-              <Download size={18} /> Download Resume
-            </button>
+      {/* Hero Section - Dark Emerald Background */}
+      <header id="about" className="bg-emerald-900 pt-32 pb-20 md:pt-48 md:pb-32 px-6">
+        <div className="container mx-auto max-w-5xl">
+          <div className="flex flex-col md:flex-row gap-12 items-center">
+            <div className="flex-1 text-center md:text-left">
+              <div className="inline-block px-4 py-1.5 bg-emerald-800 border border-emerald-700 rounded-full mb-6">
+                <span className="text-emerald-300 text-xs font-bold tracking-widest uppercase">
+                  Finance & Strategy Professional
+                </span>
+              </div>
+              
+              <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+                Data-Driven <br/>
+                <span className="text-orange-400">Financial Clarity.</span>
+              </h1>
+              
+              <p className="text-lg text-emerald-100 mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">
+                I bridge the gap between traditional accounting and modern data science. 
+                With a background in Commerce and ongoing CPA/MBA studies, I help businesses optimize financial performance through precision and insight.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                <button 
+                  onClick={() => scrollToSection('experience')}
+                  className="px-8 py-4 bg-white text-emerald-900 font-bold rounded hover:bg-emerald-50 transition-colors flex items-center gap-2"
+                >
+                  View Experience <ArrowRight size={18} />
+                </button>
+                <button className="px-8 py-4 bg-transparent border border-emerald-700 text-white font-bold rounded hover:bg-emerald-800 transition-colors flex items-center gap-2">
+                  <Download size={18} /> Download CV
+                </button>
+              </div>
+            </div>
+
+            {/* Abstract Visual */}
+            <div className="flex-1 flex justify-center">
+              <div className="relative w-72 h-72 md:w-96 md:h-96">
+                <div className="absolute inset-0 bg-emerald-500 rounded-full opacity-20 blur-3xl"></div>
+                <div className="relative bg-emerald-800 p-8 rounded-2xl border border-emerald-700 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                  <div className="flex items-center gap-4 mb-6 border-b border-emerald-700 pb-4">
+                    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center text-white">
+                      <Database size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-white font-bold">New Skillset</h3>
+                      <p className="text-emerald-300 text-sm">Data Camp 2025</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-emerald-100">
+                      <CheckCircle2 size={18} className="text-orange-400" /> Python for Finance
+                    </div>
+                    <div className="flex items-center gap-3 text-emerald-100">
+                      <CheckCircle2 size={18} className="text-orange-400" /> SQL Databases
+                    </div>
+                    <div className="flex items-center gap-3 text-emerald-100">
+                      <CheckCircle2 size={18} className="text-orange-400" /> Advanced Excel
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Expertise / Skills */}
-      <section id="expertise" className="py-24 container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid md:grid-cols-3 gap-16">
-          <div className="md:col-span-1">
-            <h2 className="text-3xl font-serif mb-4 flex items-center gap-2">
-              <span className="w-8 h-1 bg-gradient-to-r from-emerald-500 to-orange-500 rounded-full"></span>
-              Technical Expertise
-            </h2>
-            <p className="text-stone-500 leading-relaxed">
-              My skillset has evolved from traditional ledger management to advanced data modeling. 
-              I bring clarity to complex financial landscapes.
+      {/* Expertise Section */}
+      <section id="expertise" className="py-20 bg-slate-50 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Technical Expertise</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              A unique combination of certified accounting knowledge and technical data skills.
             </p>
           </div>
-          
-          <div className="md:col-span-2 grid md:grid-cols-2 gap-8">
-            
-            {/* Column 1: Finance */}
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-emerald-100 hover:shadow-md transition-shadow">
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Card 1: Finance */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100 hover:border-emerald-500 transition-colors">
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-emerald-100 text-emerald-700 rounded-xl">
+                <div className="p-3 bg-emerald-100 text-emerald-700 rounded-lg">
                   <CreditCard size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-stone-900">Financial Core</h3>
+                <h3 className="text-xl font-bold text-slate-900">Financial Management</h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                {['Financial Reporting', 'Bank Reconciliation', 'Budgeting & Planning', 'Cash Flow Management', 'QuickBooks', 'Auditing', 'Taxation'].map(skill => (
-                  <span key={skill} className="px-3 py-1.5 bg-stone-50 border border-stone-200 text-stone-600 text-sm rounded-md font-medium hover:border-emerald-300 hover:text-emerald-700 transition-colors">
-                    {skill}
-                  </span>
-                ))}
+                <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Financial Reporting</span>
+                <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Bank Reconciliation</span>
+                <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Budgeting</span>
+                <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">QuickBooks</span>
+                <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Taxation</span>
+                <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Cash Flow</span>
               </div>
             </div>
 
-            {/* Column 2: Data */}
-            <div className="bg-gradient-to-br from-stone-900 to-stone-800 text-white p-8 rounded-2xl shadow-xl relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500 rounded-full blur-[60px] opacity-20 group-hover:opacity-30 transition-opacity"></div>
+            {/* Card 2: Data */}
+            <div className="bg-slate-900 p-8 rounded-xl shadow-lg text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500 rounded-full blur-[60px] opacity-20"></div>
               
               <div className="flex items-center gap-4 mb-6 relative z-10">
-                <div className="p-3 bg-stone-700 text-orange-400 rounded-xl border border-stone-600">
+                <div className="p-3 bg-slate-800 text-orange-400 rounded-lg border border-slate-700">
                   <Database size={24} />
                 </div>
                 <h3 className="text-xl font-bold">Data Intelligence</h3>
               </div>
               
               <div className="space-y-4 relative z-10">
-                <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:border-orange-500/50 transition-colors">
-                  <div className="bg-blue-500/20 p-2 rounded text-blue-300"><Code size={18}/></div>
-                  <div>
-                    <h4 className="font-bold text-sm">Python</h4>
-                    <p className="text-xs text-stone-400">Automation & Cleaning</p>
+                <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
+                  <div className="flex items-center gap-3">
+                    <Code size={18} className="text-blue-400"/>
+                    <span className="font-medium">Python</span>
                   </div>
+                  <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded">Automation</span>
                 </div>
-                <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:border-orange-500/50 transition-colors">
-                  <div className="bg-orange-500/20 p-2 rounded text-orange-300"><Database size={18}/></div>
-                  <div>
-                    <h4 className="font-bold text-sm">SQL</h4>
-                    <p className="text-xs text-stone-400">Database Querying</p>
+
+                <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
+                  <div className="flex items-center gap-3">
+                    <Database size={18} className="text-orange-400"/>
+                    <span className="font-medium">SQL</span>
                   </div>
+                  <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded">Querying</span>
                 </div>
-                <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:border-orange-500/50 transition-colors">
-                  <div className="bg-emerald-500/20 p-2 rounded text-emerald-300"><FileSpreadsheet size={18}/></div>
-                  <div>
-                    <h4 className="font-bold text-sm">Advanced Excel</h4>
-                    <p className="text-xs text-stone-400">Financial Modeling</p>
+
+                <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
+                  <div className="flex items-center gap-3">
+                    <FileSpreadsheet size={18} className="text-emerald-400"/>
+                    <span className="font-medium">Advanced Excel</span>
                   </div>
+                  <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded">Modeling</span>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* Experience */}
-      <section id="experience" className="py-24 bg-white relative z-10">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-baseline mb-16">
-            <h2 className="text-3xl font-serif flex items-center gap-2">
-              <span className="w-2 h-8 bg-emerald-600 rounded-full"></span>
-              Selected Experience
-            </h2>
-            <span className="text-emerald-700 font-semibold bg-emerald-50 px-4 py-1 rounded-full text-sm mt-2 md:mt-0 border border-emerald-100">
-              2019 — Present
-            </span>
+      {/* Experience Section */}
+      <section id="experience" className="py-20 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl font-bold text-slate-900">Professional Journey</h2>
+            <div className="h-1 bg-slate-100 flex-1 ml-6 rounded-full">
+              <div className="h-1 bg-emerald-500 w-20 rounded-full"></div>
+            </div>
           </div>
 
-          <div className="space-y-12">
-            <ExperienceItem 
-              role="Accounts Assistant"
-              company="Multimedia University Club House"
-              period="Feb 2024 — Sep 2024"
-              location="Nairobi, Kenya"
-              colorClass="hover:border-emerald-500"
-              description="Orchestrated daily financial transactions and monthly reconciliations. Streamlined the invoicing process and supported rigorous budget tracking for the university facility."
-            />
-            <ExperienceItem 
-              role="Data Entry Consultant"
-              company="Maisha Meds Co."
-              period="Jan 2020 — Dec 2023"
-              location="Kisumu, Kenya"
-              colorClass="hover:border-orange-500"
-              description="Key player in the digital transformation of pharmacy records. Verified large datasets to enhance the Maisha Meds digital platform and trained staff on system compliance."
-            />
-            <ExperienceItem 
-              role="Financial Assistant (Attachment)"
-              company="KMTC - Lake Victoria Campus"
-              period="Jun 2023 — Aug 2023"
-              location="Kisumu, Kenya"
-              colorClass="hover:border-emerald-500"
-              description="Managed petty cash books, processed payment vouchers, and prepared VAT withholding schedules. Ensured strict adherence to public finance regulations."
-            />
-            <ExperienceItem 
-              role="Founder & CEO"
-              company="Ojay Fragrance"
-              period="Dec 2019 — Present"
-              location="Remote / Kisumu"
-              colorClass="hover:border-purple-500"
-              description="Founded and scaled a retail business. Responsible for P&L management, marketing strategy, and supply chain logistics."
-            />
+          <div className="space-y-12 border-l-2 border-slate-100 pl-8 ml-4 md:ml-0">
+            {/* Job 1 */}
+            <div className="relative">
+              <div className="absolute -left-[41px] top-1 w-5 h-5 bg-emerald-500 rounded-full border-4 border-white shadow-sm"></div>
+              <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+                <h3 className="text-xl font-bold text-slate-900">Accounts Assistant</h3>
+                <span className="text-sm font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">Feb 2024 — Sep 2024</span>
+              </div>
+              <p className="text-slate-600 font-medium mb-3">Multimedia University Club House | Nairobi</p>
+              <p className="text-slate-500 leading-relaxed">
+                Orchestrated daily financial transactions and monthly reconciliations. Streamlined the invoicing process and supported rigorous budget tracking for the university facility.
+              </p>
+            </div>
+
+            {/* Job 2 */}
+            <div className="relative">
+              <div className="absolute -left-[41px] top-1 w-5 h-5 bg-orange-500 rounded-full border-4 border-white shadow-sm"></div>
+              <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+                <h3 className="text-xl font-bold text-slate-900">Data Entry Consultant</h3>
+                <span className="text-sm font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">Jan 2020 — Dec 2023</span>
+              </div>
+              <p className="text-slate-600 font-medium mb-3">Maisha Meds Co. | Kisumu</p>
+              <p className="text-slate-500 leading-relaxed">
+                Key player in the digital transformation of pharmacy records. Verified large datasets to enhance the Maisha Meds digital platform and trained staff on system compliance.
+              </p>
+            </div>
+
+            {/* Job 3 */}
+            <div className="relative">
+              <div className="absolute -left-[41px] top-1 w-5 h-5 bg-slate-300 rounded-full border-4 border-white shadow-sm"></div>
+              <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+                <h3 className="text-xl font-bold text-slate-900">Financial Assistant (Attachment)</h3>
+                <span className="text-sm font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">Jun 2023 — Aug 2023</span>
+              </div>
+              <p className="text-slate-600 font-medium mb-3">KMTC - Lake Victoria Campus</p>
+              <p className="text-slate-500 leading-relaxed">
+                Managed petty cash books, processed payment vouchers, and prepared VAT withholding schedules.
+              </p>
+            </div>
+
+            {/* Job 4 */}
+            <div className="relative">
+              <div className="absolute -left-[41px] top-1 w-5 h-5 bg-purple-500 rounded-full border-4 border-white shadow-sm"></div>
+              <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+                <h3 className="text-xl font-bold text-slate-900">Founder & CEO</h3>
+                <span className="text-sm font-bold text-purple-600 bg-purple-50 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">Dec 2019 — Present</span>
+              </div>
+              <p className="text-slate-600 font-medium mb-3">Ojay Fragrance</p>
+              <p className="text-slate-500 leading-relaxed">
+                Founded and scaled a retail business. Responsible for P&L management, marketing strategy, and supply chain logistics.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Education */}
-      <section id="education" className="py-24 container mx-auto px-6 md:px-12 relative z-10">
-        <h2 className="text-3xl font-serif mb-12 text-center">Education & Credentials</h2>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <EducationCard 
-            icon={GraduationCap}
-            title="BSc in Commerce (Finance)"
-            subtitle="Multimedia University"
-            detail="Second Class Honours (Upper Division)"
-            theme="emerald"
-          />
-          <EducationCard 
-            icon={Briefcase}
-            title="Master of Business Admin"
-            subtitle="In Progress"
-            detail="Strategic Management & Finance"
-            theme="blue"
-          />
-          <EducationCard 
-            icon={Award}
-            title="CPA (K)"
-            subtitle="KASNEB"
-            detail="Foundation Complete, Intermediate in Progress"
-            theme="orange"
-          />
+      {/* Education Section */}
+      <section id="education" className="py-20 bg-slate-50 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Education & Certifications</h2>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Degree 1 */}
+            <div className="bg-white p-8 rounded-xl border-t-4 border-emerald-500 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 mb-4">
+                <GraduationCap size={24} />
+              </div>
+              <h3 className="font-bold text-slate-900 text-lg">BSc in Commerce</h3>
+              <p className="text-emerald-600 text-sm font-bold mb-2">Multimedia University</p>
+              <p className="text-slate-500 text-sm">Second Class Honours (Upper Division). Specializing in Finance.</p>
+            </div>
+
+            {/* Degree 2 */}
+            <div className="bg-white p-8 rounded-xl border-t-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                <Briefcase size={24} />
+              </div>
+              <h3 className="font-bold text-slate-900 text-lg">Master of Business Admin</h3>
+              <p className="text-blue-600 text-sm font-bold mb-2">In Progress</p>
+              <p className="text-slate-500 text-sm">Focusing on Strategic Management and Advanced Financial Planning.</p>
+            </div>
+
+            {/* Cert */}
+            <div className="bg-white p-8 rounded-xl border-t-4 border-orange-500 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 mb-4">
+                <Award size={24} />
+              </div>
+              <h3 className="font-bold text-slate-900 text-lg">CPA (K)</h3>
+              <p className="text-orange-600 text-sm font-bold mb-2">KASNEB</p>
+              <p className="text-slate-500 text-sm">Foundation Level Complete. Intermediate Level In Progress.</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-stone-900 text-stone-300 relative overflow-hidden">
-        {/* Background Mesh */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-            <div className="absolute -right-20 -top-20 w-96 h-96 bg-emerald-500 rounded-full blur-[80px]"></div>
-            <div className="absolute -left-20 -bottom-20 w-96 h-96 bg-orange-600 rounded-full blur-[80px]"></div>
-        </div>
-
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="grid md:grid-cols-2 gap-16">
+      <section id="contact" className="py-20 bg-slate-900 text-white px-6">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-emerald-400 font-medium tracking-widest text-sm uppercase mb-4">Get in Touch</p>
-              <h2 className="text-4xl md:text-5xl font-serif text-white mb-8">Ready to transform your financial data?</h2>
+              <p className="text-orange-500 font-bold tracking-widest text-sm uppercase mb-4">Contact</p>
+              <h2 className="text-4xl font-bold mb-6">Let's Discuss Your Financial Strategy</h2>
+              <p className="text-slate-400 mb-8 text-lg">
+                I am available for full-time roles and consulting projects. Reach out to see how I can add value to your team.
+              </p>
+              
               <div className="space-y-6">
-                <a href="mailto:flavianurich@gmail.com" className="flex items-center gap-4 text-xl hover:text-white transition-colors group">
-                  <div className="p-3 bg-stone-800 rounded-lg group-hover:bg-emerald-600 transition-colors">
-                    <Mail size={20} className="text-emerald-400 group-hover:text-white" /> 
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center text-emerald-400">
+                    <Mail size={20} />
                   </div>
-                  flavianurich@gmail.com
-                </a>
-                <div className="flex items-center gap-4 text-xl group">
-                  <div className="p-3 bg-stone-800 rounded-lg group-hover:bg-emerald-600 transition-colors">
-                    <Phone size={20} className="text-emerald-400 group-hover:text-white" />
+                  <div>
+                    <p className="text-sm text-slate-400">Email Me</p>
+                    <a href="mailto:flavianurich@gmail.com" className="text-lg font-bold hover:text-emerald-400 transition-colors">flavianurich@gmail.com</a>
                   </div>
-                  +254 111 594 730
                 </div>
-                <div className="flex items-center gap-4 text-xl group">
-                  <div className="p-3 bg-stone-800 rounded-lg group-hover:bg-emerald-600 transition-colors">
-                    <MapPin size={20} className="text-emerald-400 group-hover:text-white" />
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center text-emerald-400">
+                    <Phone size={20} />
                   </div>
-                  Kisumu, Kenya
+                  <div>
+                    <p className="text-sm text-slate-400">Call Me</p>
+                    <p className="text-lg font-bold">+254 111 594 730</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center text-emerald-400">
+                    <MapPin size={20} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-400">Location</p>
+                    <p className="text-lg font-bold">Kisumu, Kenya</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-white/10">
-              <form className="space-y-6">
+            <div className="bg-white text-slate-800 p-8 rounded-2xl shadow-xl">
+              <form className="space-y-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-widest mb-2 text-stone-400">Name</label>
-                  <input type="text" className="w-full bg-stone-800/50 border border-stone-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all" placeholder="Your name" />
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Your Name</label>
+                  <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors" placeholder="John Doe" />
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-widest mb-2 text-stone-400">Email</label>
-                  <input type="email" className="w-full bg-stone-800/50 border border-stone-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all" placeholder="email@address.com" />
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Email Address</label>
+                  <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors" placeholder="john@example.com" />
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-widest mb-2 text-stone-400">Message</label>
-                  <textarea rows="4" className="w-full bg-stone-800/50 border border-stone-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all" placeholder="How can I help you?"></textarea>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Message</label>
+                  <textarea rows="4" className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors" placeholder="I'd like to discuss an opportunity..."></textarea>
                 </div>
-                <button className="w-full bg-gradient-to-r from-emerald-600 to-emerald-500 text-white py-4 font-bold tracking-wider uppercase rounded-lg hover:shadow-lg hover:shadow-emerald-500/25 transition-all transform hover:-translate-y-1">
-                  Send Inquiry
+                <button className="w-full bg-emerald-600 text-white font-bold py-4 rounded hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20">
+                  Send Message
                 </button>
               </form>
             </div>
@@ -332,70 +383,9 @@ const Portfolio = () => {
         </div>
       </section>
 
-      <footer className="bg-stone-950 py-12 border-t border-stone-800">
-        <div className="container mx-auto px-6 text-center text-stone-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} Harrisone Urich. All Rights Reserved.</p>
-        </div>
+      <footer className="bg-slate-950 text-slate-500 py-8 text-center border-t border-slate-900">
+        <p>&copy; {new Date().getFullYear()} Harrisone Urich. All Rights Reserved.</p>
       </footer>
-    </div>
-  );
-};
-
-// Helper Components
-
-const ExperienceItem = ({ role, company, period, description, location, colorClass }) => {
-  return (
-    <div className={`group border-l-4 border-stone-200 pl-8 ${colorClass} transition-colors duration-300`}>
-      <div className="grid md:grid-cols-4 gap-4 mb-2">
-        <div className="md:col-span-1 text-sm text-stone-400 font-medium pt-1 uppercase tracking-wider">{period}</div>
-        <div className="md:col-span-3">
-          <h3 className="text-xl font-bold text-stone-900 group-hover:text-emerald-800 transition-colors">{role}</h3>
-          <div className="flex items-center gap-2 text-stone-600 italic mb-3">
-            <span className="font-medium">{company}</span>
-            <span className="w-1 h-1 bg-stone-300 rounded-full"></span>
-            <span className="text-sm not-italic">{location}</span>
-          </div>
-          <p className="text-stone-600 leading-relaxed max-w-2xl">
-            {description}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const EducationCard = ({ icon: Icon, title, subtitle, detail, theme }) => {
-  // Simplified logic to avoid runtime errors
-  const styles = {
-    emerald: {
-      wrapper: 'border-t-emerald-500 bg-emerald-50 hover:shadow-emerald-100',
-      iconBg: 'bg-emerald-100',
-      iconColor: 'text-emerald-600'
-    },
-    blue: {
-      wrapper: 'border-t-blue-500 bg-blue-50 hover:shadow-blue-100',
-      iconBg: 'bg-blue-100',
-      iconColor: 'text-blue-600'
-    },
-    orange: {
-      wrapper: 'border-t-orange-500 bg-orange-50 hover:shadow-orange-100',
-      iconBg: 'bg-orange-100',
-      iconColor: 'text-orange-600'
-    }
-  };
-
-  const currentStyle = styles[theme] || styles.emerald;
-
-  return (
-    <div className={`p-8 border-t-4 shadow-sm hover:shadow-lg transition-all bg-white ${currentStyle.wrapper}`}>
-      <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-6 ${currentStyle.iconBg}`}>
-        <Icon className={currentStyle.iconColor} size={24} />
-      </div>
-      <h3 className="text-lg font-bold text-stone-900">{title}</h3>
-      <p className="text-stone-600 italic mb-4">{subtitle}</p>
-      <p className="text-sm text-stone-500 leading-relaxed border-t border-stone-100 pt-4">
-        {detail}
-      </p>
     </div>
   );
 };
